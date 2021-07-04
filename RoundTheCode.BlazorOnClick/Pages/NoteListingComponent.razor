@@ -1,0 +1,38 @@
+﻿@using RoundTheCode.BlazorOnClick.Models
+@page "/"
+    <div class="col-6">
+        <h2>Enter your note</h2>
+        <fieldset>
+            <label for="Comment">
+                <textarea id="Comment" cols="50" rows="6"></textarea>
+            </label>
+        </fieldset>
+        <button type="submit">Submit</button>
+    </div>
+    <div class="col-6">
+        <h2>Your saved notes</h2>
+        @if (Notes?.Any() ?? false)
+        {
+            <ul>
+                @foreach (var note in Notes)
+                {
+                    <NoteViewComponent Note="@note"></NoteViewComponent>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>You currently do not have any saved notes.</p>
+        }
+    </div>
+    @code {
+
+        public IList<Note> Notes { get; set; }
+
+        protected override async Task OnInitializedAsync()
+        {
+            Notes = new List<Note>();
+
+            await base.OnInitializedAsync();
+        }
+    }
