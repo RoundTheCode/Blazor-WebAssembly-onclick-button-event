@@ -9,3 +9,6 @@ li:first-child {
 span {
     display: block;
 }
+.highlight {
+    background: #ccc;
+}
